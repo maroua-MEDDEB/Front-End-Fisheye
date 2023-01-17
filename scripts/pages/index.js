@@ -22,18 +22,18 @@ async function getPhotographers() {
     },
   ];*/
 
-  const response = await fetch("data/photographers.json"); // requête http
+  const response = await fetch("data/photographers.json"); // envoyer requête pour récupérer le fichier json
   const data = await response.json(); // je convertis la réponse http en object json
-  const photographers = data.photographers; // j'accès à l'attribut souhaité dans mon JSON
-
+  const photographers = data.photographers;// récupérer uniquement la clé photographers
   // et bien retourner le tableau photographers seulement une fois récupéré
+
   return { photographers };
   /* return {
     photographers: [...photographers , ...photographers, ...photographers ],
   }; */
 }
 
-async function displayData(photographers) {
+function displayData(photographers) {
   const photographersSection = document.querySelector(".photographer_section");
 
   photographers.forEach((photographer) => {
@@ -47,6 +47,7 @@ async function init() {
   // Récupère les datas des photographes
   const { photographers } = await getPhotographers();
   displayData(photographers);
+  console.log(photographers);
 }
 
 init();
