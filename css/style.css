@@ -1,8 +1,20 @@
 @import url("photographer.css");
 
+/* ajouter un style par défaut à tous les éléments du html*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "DM Sans", sans-serif;
+}
+
 body {
   font-family: "DM Sans", sans-serif;
   margin: 0;
+}
+
+a {
+  text-decoration: none;
 }
 
 header {
@@ -10,12 +22,15 @@ header {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  height: 90px;
+  /* height: 90px; */
+  padding: 40px 20px 20px 20px;
 }
 
 h1 {
-  color: #901c1c;
+  color: #901C1C;
   margin-right: 100px;
+  font-weight: 400;
+  font-size: 1.8rem;
 }
 
 .logo {
@@ -38,24 +53,35 @@ h1 {
   flex-direction: column;
 }
 
+.photographer_section article a, .photographer_section article p {
+  text-align: center; /* texte centré */
+}
+
 .photographer_section article h2 {
-  color: #d3573c;
-  font-size: 36px;
-  margin-bottom: 5px;
+  color: #D3573C;
+    /* font-size: 36px; */
+    font-size: 2rem;
+    font-weight: 400; /* texte non gras */
+    margin-top: 10px;
 }
 
 .photographer_section article img {
   height: 200px;
   width: 200px;
-  border-radius: 100%;
-  object-fit: cover;
+  border-radius: 50%;
+  object-fit: cover;/* placer l'image dans la zone définie par height et width tout en gardant ses propostions */
 }
 
-.location {
-  color: #901c1c;
-  font-size: 20px;
+.photographer_section article .localisation {
+  color: #901C1C;
+  font-size: 0.8rem;
 }
-.price {
-  color: #525252;
-  font-size: 14px;
+
+.photographer_section article .tagline {
+  font-size: 0.7rem;
+}
+
+.photographer_section article .price {
+  font-size: 0.7rem;
+  color: #757575;
 }
