@@ -43,7 +43,30 @@ function photographerFactory(data) {
     
     return article;
   }
-  return { name, picture, getUserCardDOM };
+
+  function getCardDOM() {
+   
+    const h1 = document.createElement("h1");
+    h1.textContent = name;
+
+    // ajouter city, country
+    const div2 = document.createElement("div"); //créer une div
+    div2.classList.add("localisation"); // ajouter une classe
+    div2.textContent = city + ", " + country;
+
+    // ajouter text
+    const textPhographer = document.createElement('p');
+    textPhographer.textContent = "Voir le beau dans le quotidien";
+
+    const div1 = document.createElement("div"); //créer une div
+    div1.classList.add("infoPhotographer");
+    div1.appendChild(h1);
+    div1.appendChild(div2);
+    div1.appendChild(textPhographer);
+
+    return div1;
+  }
+  return { name, picture, getUserCardDOM,getCardDOM };
 }
 
 

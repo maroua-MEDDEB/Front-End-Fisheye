@@ -4,6 +4,7 @@
 
 .photograph-header {
     background-color: #FAFAFA;
+    display: flex;
     height: 300px;
     margin: 0 100px;
 }
