@@ -1,4 +1,4 @@
-function photographerFactory(data) {
+export function photographerFactory(data) {
   const { id, name, portrait, city, country, tagline, price } = data;
 
   const picture = `assets/photographers/${portrait}`;
@@ -44,29 +44,51 @@ function photographerFactory(data) {
     return article;
   }
 
-  function getCardDOM() {
-   
+  function getDetailPhotographerDOM() {
+//div qui contient tous les informations et la photo
+const photographDetail = document.createElement("div");
+photographDetail.classList.add("photographDetail");
+
+    //div qui contient tous les informations
+    const contactDetail = document.createElement("div");
+    contactDetail.classList.add("contactDetail");
+
+   //ajouter h1 du nom et prenom
     const h1 = document.createElement("h1");
     h1.textContent = name;
 
     // ajouter city, country
-    const div2 = document.createElement("div"); //créer une div
-    div2.classList.add("localisation"); // ajouter une classe
-    div2.textContent = city + ", " + country;
+    const cityCountry = document.createElement("div"); //créer une div
+    cityCountry.classList.add("localisation"); // ajouter une classe
+    cityCountry.textContent = city + ", " + country;
 
     // ajouter text
     const textPhographer = document.createElement('p');
     textPhographer.textContent = "Voir le beau dans le quotidien";
 
-    const div1 = document.createElement("div"); //créer une div
-    div1.classList.add("infoPhotographer");
-    div1.appendChild(h1);
-    div1.appendChild(div2);
-    div1.appendChild(textPhographer);
+    
+    const divDetail = document.createElement("div"); //créer une div qui contient cityCountry et textPhographer
+    divDetail.classList.add("detail");
+    divDetail.appendChild(cityCountry);
+    divDetail.appendChild(textPhographer);
 
-    return div1;
+    photographDetail.appendChild(contactDetail);
+    contactDetail.appendChild(h1);
+    contactDetail.appendChild(divDetail);
+
+   
+    const img =document.createElement("img");
+    img.setAttribute("src", picture);
+    img.setAttribute("alt", name);
+
+    photographDetail.appendChild(img);
+
+    return photographDetail  ;
   }
-  return { name, picture, getUserCardDOM,getCardDOM };
+
+  
+
+  return { name, picture, getUserCardDOM,getDetailPhotographerDOM };
 }
 
 

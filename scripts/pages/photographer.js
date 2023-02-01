@@ -1,3 +1,6 @@
+import { photographerFactory } from "../factories/photographer.js";
+import { mediaFactory } from "../factories/medias.js";
+
 // récupérer l'id du photographe
 let params = (new URL(document.location)).searchParams;
 let id = parseInt(params.get('id')); // le nombre id
@@ -14,14 +17,15 @@ async function getPhotographer() {
 }
   console.log(getPhotographer());
 
-// afficher les donné du bon photographe
+// afficher les données du bon photographe
 function displayDataPhotographer(photographer) {
     const photographerData = document.querySelector(".photograph-header");
   
     function photographerSelect() {
       const photographerModel = photographerFactory(photographer);
-      const userCard = photographerModel.getCardDOM();
+      const userCard = photographerModel.getDetailPhotographerDOM();
       photographerData.appendChild(userCard);
+
     };
     photographerSelect();
   }
@@ -39,14 +43,33 @@ const medias = data.medias;// récupérer uniquement la clé medias
     }
     var mediasPhotographer = medias.filter(filterByID);
 
-return medias;
+return {mediasPhotographer};
 }
-console.log(getMedias());
+const medias =  await getMedias(); 
+console.log(medias);
+
+//afficher tous les médias du photographe
+function displayMedias(mediasPhotographer){
+  const mediasSection = document.querySelector(".media_section");
+
+  function mediaSelect() {
+    const mediaModel = mediaFactory(mediasPhotographer);
+    const mediaCardDOM = mediaModel.getMediaDom();
+    mediasSection.appendChild(mediaCardDOM);
+  };
+  mediaSelect();
+}
+
+
 
 async function init() {
     // Récupère les datas de photographe
     const  photographer = await getPhotographer();
     displayDataPhotographer(photographer);
+
+     // Récupère les datas de medias
+     const  {mediasPhotographer} = await getMedias();
+    displayMedias(mediasPhotographer);
   }
   
   init();

@@ -5,11 +5,14 @@
 .photograph-header {
     background-color: #FAFAFA;
     display: flex;
+    align-items: center;
+
     height: 300px;
     margin: 0 100px;
 }
 
 .contact_button {
+    margin: auto;
     font-size: 20px;
     font-weight: bold;
     color: white;
@@ -21,6 +24,28 @@
     border-radius: 5px;
     cursor: pointer;
 }
+
+.photographDetail{
+    display: flex;
+    align-items: center;
+}
+
+/* .infoPhotographer{
+    margin: auto;
+} */
+
+.infoPhotographer h1{
+    color:  #d3573c;
+}
+/* .infoPhotographer .detail{
+margin-top: 10px;
+} */
+.detail .localisation{
+    color: #901C1C;
+    font-size:1.3rem;
+    margin-bottom: 5px;
+}
+
 
 .modal {
     border-radius: 5px;
