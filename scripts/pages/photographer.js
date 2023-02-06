@@ -45,3 +45,28 @@ async  function displayPhotographerInfo() {
 }
 
 displayPhotographerInfo();
+
+//afficher les média liés au photographe
+async function displayMedia() {
+  const media = await getMedia(); //récupérer les médias liés au photographe
+
+  const photographerMedia = document.querySelector("#main");
+  
+  const media_section = document.createElement('section');
+  media_section.setAttribute('aria-label', 'Les travaux du photographe');
+
+  const media_grid = document.createElement('div');
+  media_grid.classList.add('media_grid');
+
+  media.forEach((element) => {
+    const mediaModel = mediaFactory(element);
+    const userCardDOM = mediaModel.getUserCardDOM();
+    media_grid.appendChild(userCardDOM);
+});
+
+
+  media_section.appendChild(media_grid);
+  photographerMedia.appendChild(media_section);
+}
+
+displayMedia();

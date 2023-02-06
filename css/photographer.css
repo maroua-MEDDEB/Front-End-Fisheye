@@ -31,7 +31,6 @@
 }
 
 .contact_button {
-    margin: auto;
     font-size: 20px;
     font-weight: bold;
     color: white;
@@ -41,9 +40,54 @@
     border: none;
     background-color: #901C1C;
     border-radius: 5px;
+    cursor: pointer;       
+}
+
+.photograph-header img {
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.media_grid {
+    display:flex;
+    flex-wrap:wrap;
+    margin:45px 100px;
+    padding:0;
+    justify-content:space-between;
+}
+
+.media_item {
+    color:#901c1c;
+    font-size:1.1em;
+    font-weight:500;
+    margin:10px 5px;
+    width:350px
+}
+
+.media_item img, .media_item video {
+    width:350px;
+    height:300px;
+    object-fit:cover;
+    border-radius:5px;
     cursor: pointer;
 }
 
+.media_item_infos {
+    display: flex;
+    justify-content:space-between;
+    margin-top:5px;
+}
+
+.media_item_infos h2 {
+    font-size:1em;
+    font-weight:400;
+}
+
+.media_item_infos .fa-heart {
+    margin-left: 5px;
+}
 
 .modal {
     border-radius: 5px;
