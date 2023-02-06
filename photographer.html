@@ -6,20 +6,22 @@
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
     <title>Fisheye - photographe </title>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
   </head>
   <body>
     <header>
-      <img src="assets/images/logo.png" class="logo" />
+      <a href="index.html" title="Page d'accueil">
+        <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page"/>
+      </a>
     </header>
+
     <main id="main">
       <div class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+        <button class="contact_button" onclick="displayModal()" title="Contactez-moi">Contactez-moi</button>
       </div>
-
-      <div id="containGalories">
-        <div class="media_section" aria-label="medias"></div>
-    </div>
     </main>
+    
     <div id="contact_modal">
 			<div class="modal">
 				<header>
@@ -35,12 +37,8 @@
 				</form>
 			</div>
 		</div>
-
-      
-    
-    <script src="scripts/pages/photographer.js" type="module"></script>
-    <script src="scripts/factories/photographer.js" type="module"></script>
-    <script src="scripts/factories/medias.js" type="module"></script>
-    <script src="scripts/utils/contactForm.js" type="module"></script>
+    <script src="scripts/factories/photographer.js"></script>
+    <script src="scripts/pages/photographer.js"></script>
+    <script src="scripts/utils/contactForm.js"></script>
   </body>
 </html>

@@ -1,10 +1,10 @@
-import { photographerFactory } from "../factories/photographer.js";
-import { mediaFactory } from "../factories/medias.js";
+//import { photographerFactory } from "../factories/photographer.js";
+// import { mediaFactory } from "../factories/medias.js";
+
 
 // récupérer l'id du photographe
 let params = (new URL(document.location)).searchParams;
 let id = parseInt(params.get('id')); // le nombre id
-console.log(id);
 
 // récupérer les infos du bon photographer
 async function getPhotographer() {
@@ -15,61 +15,33 @@ async function getPhotographer() {
     
     return photographer;
 }
-  console.log(getPhotographer());
-
-// afficher les données du bon photographe
-function displayDataPhotographer(photographer) {
-    const photographerData = document.querySelector(".photograph-header");
-  
-    function photographerSelect() {
-      const photographerModel = photographerFactory(photographer);
-      const userCard = photographerModel.getDetailPhotographerDOM();
-      photographerData.appendChild(userCard);
-
-    };
-    photographerSelect();
-  }
 
 // récupérer les médias de notre photographe
-async function getMedias() {
-const response = await fetch("data/photographers.json"); // envoyer requête pour récupérer le fichier json
-const data = await response.json(); // je convertis la réponse http en object json
-const medias = data.medias;// récupérer uniquement la clé medias
+async function getMedia() {
+  const response = await fetch("data/photographers.json"); // envoyer requête pour récupérer le fichier json
+  const data = await response.json(); // je convertis la réponse http en object json
+  const media = data.media;// récupérer uniquement la clé medias
 
-    function filterByID(obj) {
-        if (obj.photographerId === id) {
-        return true;
-        } 
-    }
-    var mediasPhotographer = medias.filter(filterByID);
+  // filtrer les média dont photographerId === id
+  const photographerMedia = media.filter((element) => {return element.photographerId === id});
 
-return {mediasPhotographer};
-}
-const medias =  await getMedias(); 
-console.log(medias);
-
-//afficher tous les médias du photographe
-function displayMedias(mediasPhotographer){
-  const mediasSection = document.querySelector(".media_section");
-
-  function mediaSelect() {
-    const mediaModel = mediaFactory(mediasPhotographer);
-    const mediaCardDOM = mediaModel.getMediaDom();
-    mediasSection.appendChild(mediaCardDOM);
-  };
-  mediaSelect();
+  return photographerMedia;
 }
 
+// afficher les infos du photographe
+async  function displayPhotographerInfo() {
+  const photographer = await getPhotographer(); 
+  const photographerHeader = document.querySelector('.photograph-header');
+  const photographerModel = photographerFactory(photographer);
+  const photographerInfo = photographerModel.photographerInfo();
 
+  photographerHeader.prepend(photographerInfo);
 
-async function init() {
-    // Récupère les datas de photographe
-    const  photographer = await getPhotographer();
-    displayDataPhotographer(photographer);
+  const ph_photo = document.createElement('img');
+  ph_photo.setAttribute('src', photographerModel.picture);
+  ph_photo.setAttribute('alt', photographerModel.name);
 
-     // Récupère les datas de medias
-     const  {mediasPhotographer} = await getMedias();
-    displayMedias(mediasPhotographer);
-  }
-  
-  init();
+  photographerHeader.appendChild(ph_photo);
+}
+
+displayPhotographerInfo();

@@ -1,9 +1,6 @@
 export function mediaFactory(data){
     const{id, photographerId, title, image,likes, date, price } = data;
-let isImg;
-if( image == true){
-
-}
+    
     const photosGaleries = `assets/images/${image}`;
 
     function getMediaDom(){

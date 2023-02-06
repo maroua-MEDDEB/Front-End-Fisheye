@@ -4,11 +4,30 @@
 
 .photograph-header {
     background-color: #FAFAFA;
-    display: flex;
-    align-items: center;
-
-    height: 300px;
+    /*height: 300px;*/
     margin: 0 100px;
+    padding:63px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ph_infos .ph_name {
+    color:#d3573c;
+    font-size:2.8em;
+    font-weight:400;
+    margin: 0;
+}
+
+.ph_infos .ph_localisation {
+    color:#901c1c;
+    font-size:1.2em;
+}
+
+.ph_infos .ph_tagline {
+    color:#525252;
+    font-size:.9em;
+    margin:15px 0;
 }
 
 .contact_button {
@@ -23,27 +42,6 @@
     background-color: #901C1C;
     border-radius: 5px;
     cursor: pointer;
-}
-
-.photographDetail{
-    display: flex;
-    align-items: center;
-}
-
-/* .infoPhotographer{
-    margin: auto;
-} */
-
-.infoPhotographer h1{
-    color:  #d3573c;
-}
-/* .infoPhotographer .detail{
-margin-top: 10px;
-} */
-.detail .localisation{
-    color: #901C1C;
-    font-size:1.3rem;
-    margin-bottom: 5px;
 }
 
 
