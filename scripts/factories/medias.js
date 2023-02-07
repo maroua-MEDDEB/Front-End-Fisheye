@@ -1,7 +1,7 @@
 function mediaFactory(data) {
     const { title, image, video, likes} = data;
   
-    function getUserCardDOM() {
+    function createMediaItem() {
         const media_item = document.createElement('div');
         media_item.classList.add('media_item');
     
@@ -44,5 +44,5 @@ function mediaFactory(data) {
       return media_item;
     }
   
-    return { getUserCardDOM,  }
+    return { createMediaItem };
   }
