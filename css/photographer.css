@@ -50,6 +50,23 @@
     border-radius: 50%;
 }
 
+/* bloc qui contient les likes totales et le prix du photographe*/
+.ph_likes_price{
+    background: #DB8876;
+    bottom: 0;
+    right: 40px;
+    position: fixed;
+    width:375px;
+    height:70px;
+    border-radius:5px;
+    padding:0 35px;
+    font-weight:500;
+    font-size:1.2em;
+    display: flex;
+    align-items:center;
+    justify-content: space-between;
+}
+
 .media_sort {
     position:relative;
     margin:20px 100px;

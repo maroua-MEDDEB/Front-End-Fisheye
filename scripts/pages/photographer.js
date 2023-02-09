@@ -42,6 +42,37 @@ async  function displayPhotographerInfo() {
   ph_photo.setAttribute('alt', photographerModel.name);
 
   photographerHeader.appendChild(ph_photo);
+
+  //créer une div qyui contient le nombre totale des likes
+  const ph_total_likes = document.createElement('div');
+  ph_total_likes.classList.add('ph_total_likes');
+  
+  const media = await getMedia();
+  let total_likes = 0;
+
+  media.forEach((element) => {
+    total_likes += element.likes; //calculer la somme totales des likes
+  });
+  ph_total_likes.textContent = total_likes  + " ";
+
+  const likes_icon = document.createElement('i');
+  likes_icon.classList.add('fas');
+  likes_icon.classList.add('fa-heart');
+  likes_icon.setAttribute('aria-label', 'likes');
+
+  ph_total_likes.appendChild(likes_icon);
+  //créer une div qyui contient le prix
+  const ph_price = document.createElement('div');
+  ph_price.classList.add('ph_price');
+  ph_price.textContent = photographer.price + '€ / jour';
+
+  const ph_likes_price = document.createElement('div');
+  ph_likes_price.classList.add('ph_likes_price');
+  ph_likes_price.appendChild(ph_total_likes);
+  ph_likes_price.appendChild(ph_price);
+  document.querySelector('body').appendChild(ph_likes_price);
+
+  
 }
 
 displayPhotographerInfo();
