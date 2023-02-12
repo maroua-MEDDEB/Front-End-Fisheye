@@ -161,6 +161,37 @@ async function buildMediaSection() {
   media_section.appendChild(media_grid);
   photographerMedia.appendChild(media_section);
 
+  // ajouter des évênements pour affichier et masquer le lightbox(la vue rapprochée de l'image)
+  let media_items = document.querySelectorAll('.media_item');
+  const lightbox = document.querySelector('.lightbox');
+  const media_container = document.querySelector('.media_container');
+  let theMedia;
+
+  media_items.forEach((element, index) => {
+    element.addEventListener('click', () => {
+      
+      
+      if(element.querySelector('img')) {
+        theMedia = element.querySelector('img').cloneNode(true);
+      }
+      else {
+        theMedia = element.querySelector('video').cloneNode(true);
+        theMedia.setAttribute('controls', true);
+      }
+
+      lightbox.style.display = 'block';
+      media_container.appendChild(theMedia);
+    });
+  });
+
+  // fermer le lightbox avec le btn_close
+  const closeBtn = document.querySelector('.close_btn_icon');
+  closeBtn.addEventListener('click', () => {
+    lightbox.style.display = 'none';
+    media_container.removeChild(theMedia);
+    theMedia = undefined;
+  });
+
   //ajouter les évenements
   sort_dropdown_btn.addEventListener('click', () => {
     //afficher la liste
@@ -200,7 +231,7 @@ async function buildMediaSection() {
     //masquer la liste
     sort_dropdown_list.style.display = "none";
 
-    // regénération de la grid du média selon le type du tri
+    // regénération de la grid des média selon le type du tri
     media_grid.innerHTML = '';
 
     media.forEach((element) => {
@@ -208,7 +239,67 @@ async function buildMediaSection() {
       const mediaItem = mediaModel.createMediaItem();
       media_grid.appendChild(mediaItem);
     });
+
+    // redéfinition de la variable media_items lors de tri des éléments
+    // Les nouveaux éléments de classe .media_items sont
+    media_items = document.querySelectorAll('.media_item'); 
+
+    media_items.forEach((element, index) => {
+      element.addEventListener('click', (e) => {
+          console.log(index);
+      })
+  });
   });
 }
 
 buildMediaSection();
+
+// construire lightbox (vue approchée de l'image ou du vidéo )
+function buildLightbox(){
+  const lightbox = document.createElement("div");
+  lightbox.classList.add('lightbox');
+  lightbox.setAttribute('aria-label', 'vue rapprochée de l\'image');
+
+  const lightbox_dialog = document.createElement('div');
+  lightbox_dialog.classList.add('lightbox_dialog');
+
+  const prev = document.createElement('div');
+  prev.classList.add('prev');
+
+  const prev_icon = document.createElement('i');
+  prev_icon.classList.add('fas');
+  prev_icon.classList.add('fa-chevron-left');
+  prev_icon.setAttribute('title', 'Image précédente');
+  prev_icon.setAttribute('id', 'prev_icon');
+
+  const media_container = document.createElement('div');
+  media_container.classList.add('media_container');
+
+  const next = document.createElement('div');
+  next.classList.add('next');
+
+  const close_btn_icon = document.createElement('div');
+  close_btn_icon.classList.add('fas');
+  close_btn_icon.classList.add('fa-times');
+  close_btn_icon.classList.add('close_btn_icon');
+
+  const next_icon = document.createElement('i');
+  next_icon.classList.add('fas');
+  next_icon.classList.add('fa-chevron-right');
+  next_icon.setAttribute('title', 'Image suivante');
+  next_icon.setAttribute('id', 'next_icon');
+
+
+  prev.appendChild(prev_icon);
+  next.appendChild(close_btn_icon);
+  next.appendChild(next_icon);
+  lightbox_dialog.appendChild(prev);
+  lightbox_dialog.appendChild(media_container);
+  lightbox_dialog.appendChild(next);
+  lightbox.appendChild(lightbox_dialog);
+  
+
+  return lightbox;
+}
+
+document.body.appendChild(buildLightbox());
