@@ -233,16 +233,13 @@
 }
 
 /* contact modal */
-#contact_modal {
-    display: block;
-    position: absolute;
-}
+
 
 .modal {
     border-radius: 5px;
     background-color: #DB8876;
     /* width: 50%; */
-    width: 670px;
+    min-width: 670px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -250,6 +247,7 @@
     padding: 35px;
     margin: auto;
 }
+
 
 .modal header {
     justify-content: space-between;
@@ -286,9 +284,24 @@ form div {
     margin-bottom: 26px;
 }
 
-form input {
+form input{
     width: 100%;
     height: 68px;
     border: none;
     border-radius: 5px;
+}
+
+form textarea{
+    width: 100%;
+    height: 150px;
+    border: none;
+    border-radius: 5px;
+}
+
+#contact_modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
 }

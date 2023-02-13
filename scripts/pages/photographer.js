@@ -363,10 +363,3 @@ function buildLightbox(){
 }
 
 document.body.appendChild(buildLightbox());
-
-//formulaire de contact
-const contact_btn = document.querySelector('.contact_button');
-const contact_modal = document.querySelector('#contact_modal');
-contact_btn.addEventListener('click', () => {
-  contact_modal.style.display = 'block';
-})
