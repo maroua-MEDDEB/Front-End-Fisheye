@@ -1,7 +1,3 @@
-#contact_modal {
-    display: none;
-}
-
 .photograph-header {
     background-color: #FAFAFA;
     /*height: 300px;*/
@@ -236,10 +232,17 @@
     object-fit: contain;
 }
 
+/* contact modal */
+#contact_modal {
+    display: block;
+    position: absolute;
+}
+
 .modal {
     border-radius: 5px;
     background-color: #DB8876;
-    width: 50%;
+    /* width: 50%; */
+    width: 670px;
     display: flex;
     flex-direction: column;
     align-items: center;

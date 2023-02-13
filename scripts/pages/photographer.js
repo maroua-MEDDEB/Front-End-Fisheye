@@ -166,30 +166,33 @@ async function buildMediaSection() {
   const lightbox = document.querySelector('.lightbox');
   const media_container = document.querySelector('.media_container');
   let theMedia;
+  let theTitle;
+  let currentIndex;
+
+  const showLightbox = (element) => {
+    if(element.querySelector('img')) {
+      theMedia = element.querySelector('img').cloneNode(true);
+    }
+    else {
+      theMedia = element.querySelector('video').cloneNode(true);
+      theMedia.setAttribute('controls', true);
+    }
+
+    theTitle = element.querySelector('h2').cloneNode(true);
+
+    lightbox.style.display = 'block';
+    media_container.appendChild(theMedia);
+    media_container.appendChild(theTitle);
+
+    let mediaWidth = theMedia.innerWidth; 
+    console.log(mediaWidth);
+  };
 
   media_items.forEach((element, index) => {
     element.addEventListener('click', () => {
-      
-      
-      if(element.querySelector('img')) {
-        theMedia = element.querySelector('img').cloneNode(true);
-      }
-      else {
-        theMedia = element.querySelector('video').cloneNode(true);
-        theMedia.setAttribute('controls', true);
-      }
-
-      lightbox.style.display = 'block';
-      media_container.appendChild(theMedia);
+      showLightbox(element); 
+      currentIndex = index;  
     });
-  });
-
-  // fermer le lightbox avec le btn_close
-  const closeBtn = document.querySelector('.close_btn_icon');
-  closeBtn.addEventListener('click', () => {
-    lightbox.style.display = 'none';
-    media_container.removeChild(theMedia);
-    theMedia = undefined;
   });
 
   //ajouter les évenements
@@ -241,14 +244,71 @@ async function buildMediaSection() {
     });
 
     // redéfinition de la variable media_items lors de tri des éléments
-    // Les nouveaux éléments de classe .media_items sont
+    // Les nouveaux éléments de classe .media_items ne sont plus les mêmes généré par défaut  
     media_items = document.querySelectorAll('.media_item'); 
 
-    media_items.forEach((element, index) => {
-      element.addEventListener('click', (e) => {
-          console.log(index);
-      })
+    media_items.forEach((element) => {
+      element.addEventListener('click', () => {        
+        showLightbox(element);
+        currentIndex = index;      
+      });
+    });
   });
+
+  // fermer le lightbox avec le btn_close
+  const close_btn_icon = document.querySelector('.close_btn_icon');
+  close_btn_icon.addEventListener('click', () => {
+    media_container.removeChild(theMedia);
+    lightbox.style.display = 'none';
+  });
+
+  // afficher le média suivant
+  const next_icon = document.querySelector('#next_icon');
+  next_icon.addEventListener('click', () => {
+    if(currentIndex < media_items.length - 1){
+      currentIndex++;  
+    } else{
+      currentIndex = 0;
+    }
+
+    if(media_items[currentIndex].querySelector('img')) {
+      theMedia = media_items[currentIndex].querySelector('img').cloneNode(true);
+    }
+    else {
+      theMedia = media_items[currentIndex].querySelector('video').cloneNode(true);
+      theMedia.setAttribute('controls', true);
+    }
+
+    theTitle = media_items[currentIndex].querySelector('h2').cloneNode(true);
+
+    media_container.innerHTML = '';
+    media_container.appendChild(theMedia);
+    media_container.appendChild(theTitle);
+
+  });
+
+  // afficher le média précédent
+  const prev_icon = document.querySelector('#prev_icon');
+  prev_icon.addEventListener('click', () => {
+    if(currentIndex > 0){
+      currentIndex--;  
+    } else {
+      currentIndex = media_items.length - 1 ;
+    }
+
+    if(media_items[currentIndex].querySelector('img')) {
+      theMedia = media_items[currentIndex].querySelector('img').cloneNode(true);
+    }
+    else {
+      theMedia = media_items[currentIndex].querySelector('video').cloneNode(true);
+      theMedia.setAttribute('controls', true);
+    }
+
+    theTitle = media_items[currentIndex].querySelector('h2').cloneNode(true);
+
+    media_container.innerHTML = '';
+    media_container.appendChild(theMedia);
+    media_container.appendChild(theTitle);
   });
 }
 
@@ -303,3 +363,10 @@ function buildLightbox(){
 }
 
 document.body.appendChild(buildLightbox());
+
+//formulaire de contact
+const contact_btn = document.querySelector('.contact_button');
+const contact_modal = document.querySelector('#contact_modal');
+contact_btn.addEventListener('click', () => {
+  contact_modal.style.display = 'block';
+})
