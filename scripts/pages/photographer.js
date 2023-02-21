@@ -247,7 +247,7 @@ async function buildMediaSection() {
     // Les nouveaux éléments de classe .media_items ne sont plus les mêmes généré par défaut  
     media_items = document.querySelectorAll('.media_item'); 
 
-    media_items.forEach((element) => {
+    media_items.forEach((element, index) => {
       element.addEventListener('click', () => {        
         showLightbox(element);
         currentIndex = index;      
