@@ -139,8 +139,7 @@
 .media_grid {
     display:flex;
     flex-wrap:wrap;
-    margin:45px 100px;
-    padding:0;
+    margin: 45px 100px;
     justify-content:space-between;
 }
 
@@ -149,7 +148,7 @@
     font-size:1.1em;
     font-weight:500;
     margin:10px 5px;
-    width:350px
+    width:350px;
 }
 
 .media_item img, .media_item video {

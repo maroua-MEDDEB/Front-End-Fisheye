@@ -170,6 +170,7 @@ async function buildMediaSection() {
   let currentIndex;
 
   const showLightbox = (element) => {
+    media_container.innerHTML='';
     if(element.querySelector('img')) {
       theMedia = element.querySelector('img').cloneNode(true);
     }
@@ -178,14 +179,10 @@ async function buildMediaSection() {
       theMedia.setAttribute('controls', true);
     }
 
-    theTitle = element.querySelector('h2').cloneNode(true);
-
     lightbox.style.display = 'block';
     media_container.appendChild(theMedia);
+    theTitle = element.querySelector('h2').cloneNode(true);
     media_container.appendChild(theTitle);
-
-    let mediaWidth = theMedia.innerWidth; 
-    console.log(mediaWidth);
   };
 
   media_items.forEach((element, index) => {
@@ -264,7 +261,7 @@ async function buildMediaSection() {
 
   // afficher le média suivant
   const next_icon = document.querySelector('#next_icon');
-  next_icon.addEventListener('click', () => {
+  const next_function = () => {
     if(currentIndex < media_items.length - 1){
       currentIndex++;  
     } else{
@@ -279,17 +276,20 @@ async function buildMediaSection() {
       theMedia.setAttribute('controls', true);
     }
 
-    theTitle = media_items[currentIndex].querySelector('h2').cloneNode(true);
-
     media_container.innerHTML = '';
     media_container.appendChild(theMedia);
+    theTitle = media_items[currentIndex].querySelector('h2').cloneNode(true);
     media_container.appendChild(theTitle);
+  };
 
+  next_icon.addEventListener('click', () => {
+    next_function();
   });
 
   // afficher le média précédent
   const prev_icon = document.querySelector('#prev_icon');
-  prev_icon.addEventListener('click', () => {
+
+  const prev_function = () => {
     if(currentIndex > 0){
       currentIndex--;  
     } else {
@@ -304,11 +304,27 @@ async function buildMediaSection() {
       theMedia.setAttribute('controls', true);
     }
 
-    theTitle = media_items[currentIndex].querySelector('h2').cloneNode(true);
-
     media_container.innerHTML = '';
     media_container.appendChild(theMedia);
+    theTitle = media_items[currentIndex].querySelector('h2').cloneNode(true);
     media_container.appendChild(theTitle);
+  };
+
+  prev_icon.addEventListener('click', () => {
+    prev_function();
+  });
+
+  // keybord events
+  document.addEventListener('keydown', (event) => {
+    if (event.code === 'ArrowLeft') {
+      prev_function();
+      return;
+    } 
+    
+    if (event.code === 'ArrowRight') {
+      next_function();
+      return;
+    }
   });
 }
 
