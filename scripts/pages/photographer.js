@@ -60,6 +60,8 @@ async  function displayPhotographerInfo() {
   likes_icon.classList.add('fa-heart');
   likes_icon.setAttribute('aria-label', 'likes');
 
+  
+
   ph_total_likes.appendChild(likes_icon);
   //créer une div qyui contient le prix
   const ph_price = document.createElement('div');
@@ -160,6 +162,8 @@ async function buildMediaSection() {
 
   media_section.appendChild(media_grid);
   photographerMedia.appendChild(media_section);
+
+
 
   // ajouter des évênements pour affichier et masquer le lightbox(la vue rapprochée de l'image)
   let media_items = document.querySelectorAll('.media_item');

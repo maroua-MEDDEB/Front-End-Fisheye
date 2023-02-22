@@ -148,7 +148,7 @@
     font-size:1.1em;
     font-weight:500;
     margin:10px 5px;
-    width:350px;
+    width:25%;
 }
 
 .media_item img, .media_item video {
@@ -173,6 +173,7 @@
 .media_item_infos .fa-heart {
     margin-left: 5px;
 }
+
 
 /* lightbox*/
 .lightbox{
