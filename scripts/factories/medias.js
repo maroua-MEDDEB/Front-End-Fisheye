@@ -28,9 +28,15 @@ function mediaFactory(data) {
       h2.textContent = title;
     
       const div1 = document.createElement('div');
-      div1.textContent = likes;
+
+      const likes_number = document.createElement('span');
+      likes_number.classList.add('likes_number');
+      likes_number.textContent = likes;
+      div1.appendChild(likes_number);
       
+
       const likes_icon = document.createElement('i');
+      likes_icon.classList.add('like_icon');
       likes_icon.classList.add('fas');
       likes_icon.classList.add('fa-heart');
       likes_icon.setAttribute('aria-label', 'likes');
@@ -40,6 +46,12 @@ function mediaFactory(data) {
       media_item_infos.appendChild(div1);
     
       media_item.appendChild(media_item_infos);
+
+      // Gérer l'incrémentation via le click sur un coeur
+      likes_icon.addEventListener('click', () => { 
+      likes_number.textContent ++;
+      console.log('bonjour');
+    }); 
     
       return media_item;
     }

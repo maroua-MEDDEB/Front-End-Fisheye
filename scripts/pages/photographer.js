@@ -43,7 +43,7 @@ async  function displayPhotographerInfo() {
 
   photographerHeader.appendChild(ph_photo);
 
-  //créer une div qyui contient le nombre totale des likes
+  //créer une div qui contient le nombre totale des likes
   const ph_total_likes = document.createElement('div');
   ph_total_likes.classList.add('ph_total_likes');
   
@@ -51,7 +51,11 @@ async  function displayPhotographerInfo() {
   let total_likes = 0;
 
   media.forEach((element) => {
+    
     total_likes += element.likes; //calculer la somme totales des likes
+
+    // Gérer l'incrémentation de la somme totales des likes via le click sur un coeur
+
   });
   ph_total_likes.textContent = total_likes  + " ";
 
@@ -59,8 +63,6 @@ async  function displayPhotographerInfo() {
   likes_icon.classList.add('fas');
   likes_icon.classList.add('fa-heart');
   likes_icon.setAttribute('aria-label', 'likes');
-
-  
 
   ph_total_likes.appendChild(likes_icon);
   //créer une div qyui contient le prix
@@ -190,7 +192,8 @@ async function buildMediaSection() {
   };
 
   media_items.forEach((element, index) => {
-    element.addEventListener('click', () => {
+    const element_thumb = element.querySelector('img') ? element.querySelector('img'): element.querySelector('video') ;
+    element_thumb.addEventListener('click', () => {
       showLightbox(element); 
       currentIndex = index;  
     });
@@ -247,11 +250,12 @@ async function buildMediaSection() {
     // redéfinition de la variable media_items lors de tri des éléments
     // Les nouveaux éléments de classe .media_items ne sont plus les mêmes généré par défaut  
     media_items = document.querySelectorAll('.media_item'); 
-
+    
     media_items.forEach((element, index) => {
-      element.addEventListener('click', () => {        
-        showLightbox(element);
-        currentIndex = index;      
+      const element_thumb = element.querySelector('img') ? element.querySelector('img'): element.querySelector('video') ;
+      element_thumb.addEventListener('click', () => {
+        showLightbox(element); 
+        currentIndex = index;  
       });
     });
   });
