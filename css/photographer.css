@@ -139,20 +139,20 @@
 .media_grid {
     display:flex;
     flex-wrap:wrap;
-    margin: 45px 100px;
-    justify-content:space-between;
+    margin: 45px 75px;
+    justify-content:flex-start;
 }
 
 .media_item {
     color:#901c1c;
     font-size:1.1em;
     font-weight:500;
-    margin:10px 5px;
-    width:25%;
+    margin:10px 20px;
+    width:30%;
 }
 
 .media_item img, .media_item video {
-    width:350px;
+    width:100%;
     height:300px;
     object-fit:cover;
     border-radius:5px;

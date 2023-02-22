@@ -50,7 +50,6 @@ function mediaFactory(data) {
       // Gérer l'incrémentation via le click sur un coeur
       likes_icon.addEventListener('click', () => { 
       likes_number.textContent ++;
-      console.log('bonjour');
     }); 
     
       return media_item;
