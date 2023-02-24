@@ -24,8 +24,8 @@ function mediaFactory(data) {
       const media_item_infos = document.createElement('div');
       media_item_infos.classList.add('media_item_infos');
     
-      const h2 = document.createElement('h2');
-      h2.textContent = title;
+      const p = document.createElement('p');
+      p.textContent = title;
     
       const div1 = document.createElement('div');
 
@@ -42,15 +42,15 @@ function mediaFactory(data) {
       likes_icon.setAttribute('aria-label', 'likes');
       div1.appendChild(likes_icon);
       
-      media_item_infos.appendChild(h2);
+      media_item_infos.appendChild(p);
       media_item_infos.appendChild(div1);
     
       media_item.appendChild(media_item_infos);
 
-      // Gérer l'incrémentation via le click sur un coeur
+      // // Gérer l'incrémentation via le click sur un coeur
       likes_icon.addEventListener('click', () => { 
       likes_number.textContent ++;
-    }); 
+      }); 
     
       return media_item;
     }

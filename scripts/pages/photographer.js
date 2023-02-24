@@ -112,10 +112,16 @@ async function buildMediaSection() {
   
   const sort_dropdown_list = document.createElement('ul');
   sort_dropdown_list.classList.add('sort_dropdown_list');
+  sort_dropdown_list.setAttribute('role','listbox');
+  sort_dropdown_list.setAttribute('tabindex','-1');
+
+
 
   const sort_dropdown_list_item1 = document.createElement('li');
   sort_dropdown_list_item1.setAttribute('id', 'sort-item-1');
   sort_dropdown_list_item1.textContent = 'Popularité';
+  sort_dropdown_list_item1.setAttribute('role','option');
+  sort_dropdown_list_item1.setAttribute('tabindex','-1');
 
   const sort_dropdown_list_arrow = document.createElement('span');
   sort_dropdown_list_arrow.classList.add('fas');
@@ -126,10 +132,14 @@ async function buildMediaSection() {
   const sort_dropdown_list_item2 = document.createElement('li');
   sort_dropdown_list_item2.setAttribute('id', 'sort-item-2');
   sort_dropdown_list_item2.textContent = 'Date';
+  sort_dropdown_list_item2.setAttribute('role','option');
+  sort_dropdown_list_item2.setAttribute('tabindex','-1');
 
   const sort_dropdown_list_item3 = document.createElement('li');
   sort_dropdown_list_item3.setAttribute('id', 'sort-item-3');
   sort_dropdown_list_item3.textContent = 'Titre';
+  sort_dropdown_list_item3.setAttribute('role','option');
+  sort_dropdown_list_item3.setAttribute('tabindex','-1');
 
   media_sort.appendChild(media_sort_label);
   sort_dropdown_btn.appendChild(sort_dropdown_btn_arrow);
@@ -148,6 +158,7 @@ async function buildMediaSection() {
   const media = await getMedia();
   const media_grid = document.createElement('div');
   media_grid.classList.add('media_grid');
+  media_grid.setAttribute('role','grid');
 
   //trier par défaut les média par popularité 
   media.sort((a, b) => {
@@ -175,6 +186,11 @@ async function buildMediaSection() {
   let theTitle;
   let currentIndex;
 
+  ////////////////////////
+  // Gérer l'incrémentation via le click sur un coeur
+  const like_icon = document.querySelectorAll('.like_icon');
+  const ph_total_likes = document.querySelector('.ph_total_likes');
+
   const showLightbox = (element) => {
     media_container.innerHTML='';
     if(element.querySelector('img')) {
@@ -197,6 +213,8 @@ async function buildMediaSection() {
       showLightbox(element); 
       currentIndex = index;  
     });
+
+    element_thumb.setAttribute('tabindex','index');
   });
 
   //ajouter les évenements
@@ -387,3 +405,12 @@ function buildLightbox(){
 }
 
 document.body.appendChild(buildLightbox());
+
+// like_icon.forEach((element) => {
+//   const likes_number = element.parentNode.querySelector('.likes_number');
+//   element.addEventListener('click', () => { 
+//     likes_number.textContent ++;
+//     //ph_total_likes.textContent++;
+//     console.log(ph_total_likes);
+//   });
+// });
