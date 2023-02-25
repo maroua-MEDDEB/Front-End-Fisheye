@@ -30,28 +30,28 @@
           <img src="assets/icons/close.svg" onclick="closeModal()" />
         </header>
 
-				<form action="" role="form">
+				<form action="" role="form" id="contact_form" method="post">
 					<div>
 						<label for="prenom">Prénom</label>
-						<input id="prenom" type="text" name="prenom" />
+						<input id="prenom" type="text" name="prenom" tabindex="1" placeholder="Entrer votre prénom"/>
 					</div>
 
           <div>
 						<label for="nom">Nom</label>
-						<input id="nom" type="text" name="nom"/>
+						<input id="nom" type="text" name="nom" tabindex="2"/>
 					</div>
 
           <div>
 						<label for="email">Email</label>
-						<input id="email" type="email" name="email"/>
+						<input id="email" type="email" name="email" tabindex="3"/>
 					</div>
 
           <div>
 						<label for="message">Votre message</label>
-						<textarea id="message" name="message"></textarea>
+						<textarea id="message" name="message" tabindex="4"></textarea>
 					</div>
 
-          <button type="submit" class="contact_button" id="submit_btn">Envoyer</button>
+          <button type="submit" class="contact_button" id="submit_btn" tabindex="5">Envoyer</button>
 				</form>
 			</div>
 		</div>
