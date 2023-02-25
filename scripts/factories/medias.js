@@ -5,11 +5,14 @@ function mediaFactory(data) {
         const media_item = document.createElement('div');
         media_item.classList.add('media_item');
     
+        media_item.setAttribute('title', title);
+        // media_item.setAttribute('tabindex', 0);
         //si l'élément est une image donc on crée un élément html img
 
         if(image) {
           const media_item_img = document.createElement('img');
           media_item_img.setAttribute('src', 'assets/media/' + image);
+          media_item_img.setAttribute('tabindex', 0);
       
           media_item.appendChild(media_item_img);
       }
@@ -17,7 +20,7 @@ function mediaFactory(data) {
       if(video) {
           const media_item_video = document.createElement('video');
           media_item_video.setAttribute('src', 'assets/media/' + video);
-      
+          media_item_video.setAttribute('tabindex', 0);
           media_item.appendChild(media_item_video);
       }
     
@@ -40,17 +43,14 @@ function mediaFactory(data) {
       likes_icon.classList.add('fas');
       likes_icon.classList.add('fa-heart');
       likes_icon.setAttribute('aria-label', 'likes');
+      likes_icon.setAttribute('tabindex', 0);
       div1.appendChild(likes_icon);
+
       
       media_item_infos.appendChild(p);
       media_item_infos.appendChild(div1);
     
       media_item.appendChild(media_item_infos);
-
-      // // Gérer l'incrémentation via le click sur un coeur
-      /*likes_icon.addEventListener('click', () => { 
-        likes_number.textContent ++;
-      }); */
     
       return media_item;
     }

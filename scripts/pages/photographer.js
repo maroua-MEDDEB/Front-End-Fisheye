@@ -115,7 +115,6 @@ async function buildMediaSection() {
   const sort_dropdown_list = document.createElement('ul');
   sort_dropdown_list.classList.add('sort_dropdown_list');
   sort_dropdown_list.setAttribute('role','listbox');
-  sort_dropdown_list.setAttribute('tabindex','-1');
 
 
 
@@ -123,7 +122,7 @@ async function buildMediaSection() {
   sort_dropdown_list_item1.setAttribute('id', 'sort-item-1');
   sort_dropdown_list_item1.textContent = 'Popularité';
   sort_dropdown_list_item1.setAttribute('role','option');
-  sort_dropdown_list_item1.setAttribute('tabindex','-1');
+
 
   const sort_dropdown_list_arrow = document.createElement('span');
   sort_dropdown_list_arrow.classList.add('fas');
@@ -135,13 +134,13 @@ async function buildMediaSection() {
   sort_dropdown_list_item2.setAttribute('id', 'sort-item-2');
   sort_dropdown_list_item2.textContent = 'Date';
   sort_dropdown_list_item2.setAttribute('role','option');
-  sort_dropdown_list_item2.setAttribute('tabindex','-1');
+
 
   const sort_dropdown_list_item3 = document.createElement('li');
   sort_dropdown_list_item3.setAttribute('id', 'sort-item-3');
   sort_dropdown_list_item3.textContent = 'Titre';
   sort_dropdown_list_item3.setAttribute('role','option');
-  sort_dropdown_list_item3.setAttribute('tabindex','-1');
+
 
   media_sort.appendChild(media_sort_label);
   sort_dropdown_btn.appendChild(sort_dropdown_btn_arrow);
@@ -192,6 +191,18 @@ async function buildMediaSection() {
 
       is_clicked = true;
     });
+
+    element.addEventListener('keydown',(event) => {
+      if(event.key === 'Enter'){
+        if(is_clicked === false) {
+          const likes_number = element.parentNode.querySelector('.likes_number'); 
+          likes_number.textContent ++; // incrémentation du nombre de like pour chaque élément
+          ph_total_likes_number.textContent++; // incrémentation du nombre total de likes
+        }
+  
+        is_clicked = true;
+      }
+    })
   });
   
     //////
@@ -217,18 +228,24 @@ async function buildMediaSection() {
 
     lightbox.style.display = 'block';
     media_container.appendChild(theMedia);
-    theTitle = element.querySelector('h2').cloneNode(true);
+    theTitle = element.querySelector('p').cloneNode(true);
     media_container.appendChild(theTitle);
   };
 
   media_items.forEach((element, index) => {
     const element_thumb = element.querySelector('img') ? element.querySelector('img'): element.querySelector('video') ;
+    
     element_thumb.addEventListener('click', () => {
       showLightbox(element); 
       currentIndex = index;  
     });
 
-    element_thumb.setAttribute('tabindex','index');
+    element_thumb.addEventListener('keypress', (event) => {
+      if(event.key === 'Enter') {
+        showLightbox(element);
+        currentIndex = index;  
+      }
+    });
   });
 
   //ajouter les évenements
@@ -285,10 +302,18 @@ async function buildMediaSection() {
     
     media_items.forEach((element, index) => {
       const element_thumb = element.querySelector('img') ? element.querySelector('img'): element.querySelector('video') ;
+      
       element_thumb.addEventListener('click', () => {
         showLightbox(element); 
         currentIndex = index;  
       });
+
+      element_thumb.addEventListener('keypress', (event) => {
+        if(event.key === 'Enter') {
+          showLightbox(element);
+          currentIndex = index;  
+        }
+      }); 
     });
   });
 
@@ -365,6 +390,13 @@ async function buildMediaSection() {
       next_function();
       return;
     }
+
+    if(event.key === 'Escape') {
+      if(theMedia) {
+        media_container.removeChild(theMedia);
+        lightbox.style.display = 'none';
+      }
+    }
   });
 }
 
@@ -419,14 +451,3 @@ function buildLightbox(){
 }
 
 document.body.appendChild(buildLightbox());
-
-
-
-// like_icon.forEach((element) => {
-//   const likes_number = element.parentNode.querySelector('.likes_number');
-//   element.addEventListener('click', () => { 
-//     likes_number.textContent ++;
-//     //ph_total_likes.textContent++;
-//     console.log(ph_total_likes);
-//   });
-// });
