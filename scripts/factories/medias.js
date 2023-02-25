@@ -48,9 +48,9 @@ function mediaFactory(data) {
       media_item.appendChild(media_item_infos);
 
       // // Gérer l'incrémentation via le click sur un coeur
-      likes_icon.addEventListener('click', () => { 
-      likes_number.textContent ++;
-      }); 
+      /*likes_icon.addEventListener('click', () => { 
+        likes_number.textContent ++;
+      }); */
     
       return media_item;
     }

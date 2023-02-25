@@ -29,6 +29,8 @@ async function getMedia() {
 }
 
 // afficher les infos du photographe
+let ph_total_likes_number;
+
 async  function displayPhotographerInfo() {
   const photographer = await getPhotographer(); 
   const photographerHeader = document.querySelector('.photograph-header');
@@ -46,6 +48,8 @@ async  function displayPhotographerInfo() {
   //créer une div qui contient le nombre totale des likes
   const ph_total_likes = document.createElement('div');
   ph_total_likes.classList.add('ph_total_likes');
+  ph_total_likes_number = document.createElement('span');
+  ph_total_likes.appendChild(ph_total_likes_number);
   
   const media = await getMedia();
   let total_likes = 0;
@@ -53,11 +57,9 @@ async  function displayPhotographerInfo() {
   media.forEach((element) => {
     
     total_likes += element.likes; //calculer la somme totales des likes
-
-    // Gérer l'incrémentation de la somme totales des likes via le click sur un coeur
-
   });
-  ph_total_likes.textContent = total_likes  + " ";
+
+  ph_total_likes_number.textContent = total_likes  + " ";
 
   const likes_icon = document.createElement('i');
   likes_icon.classList.add('fas');
@@ -176,6 +178,23 @@ async function buildMediaSection() {
   media_section.appendChild(media_grid);
   photographerMedia.appendChild(media_section);
 
+  //////
+  const like_icon = document.querySelectorAll('.like_icon');
+
+  like_icon.forEach((element) => {
+    let is_clicked = false;
+    element.addEventListener('click', () => {
+      if(is_clicked === false) {
+        const likes_number = element.parentNode.querySelector('.likes_number'); 
+        likes_number.textContent ++; // incrémentation du nombre de like pour chaque élément
+        ph_total_likes_number.textContent++; // incrémentation du nombre total de likes
+      }
+
+      is_clicked = true;
+    });
+  });
+  
+    //////
 
 
   // ajouter des évênements pour affichier et masquer le lightbox(la vue rapprochée de l'image)
@@ -185,11 +204,6 @@ async function buildMediaSection() {
   let theMedia;
   let theTitle;
   let currentIndex;
-
-  ////////////////////////
-  // Gérer l'incrémentation via le click sur un coeur
-  const like_icon = document.querySelectorAll('.like_icon');
-  const ph_total_likes = document.querySelector('.ph_total_likes');
 
   const showLightbox = (element) => {
     media_container.innerHTML='';
@@ -405,6 +419,8 @@ function buildLightbox(){
 }
 
 document.body.appendChild(buildLightbox());
+
+
 
 // like_icon.forEach((element) => {
 //   const likes_number = element.parentNode.querySelector('.likes_number');
