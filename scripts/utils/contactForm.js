@@ -30,3 +30,9 @@ contact_form.addEventListener('submit', (event) => {
   
   submit_btn.setAttribute('disabled', true); // désactiver le bouton submit après l'envoie de données du formulaire
 });
+
+//fermer le modal
+const close_modal = document.querySelector(".close_modal");
+close_modal.addEventListener('click', () => {
+  closeModal()
+});
