@@ -76,9 +76,7 @@ async  function displayPhotographerInfo() {
   ph_likes_price.classList.add('ph_likes_price');
   ph_likes_price.appendChild(ph_total_likes);
   ph_likes_price.appendChild(ph_price);
-  document.querySelector('body').appendChild(ph_likes_price);
-
-  
+  document.querySelector('body').appendChild(ph_likes_price); 
 }
 
 displayPhotographerInfo();
@@ -92,64 +90,37 @@ async function buildMediaSection() {
   media_section.setAttribute('aria-label', 'Les travaux du photographe');
 
   // créer la liste déroulante pour sectionner le type de tri 
-  const media_sort = document.createElement("div");
+  const media_sort = document.createElement("form");
   media_sort.classList.add('media_sort');
 
-  const media_sort_label = document.createElement('div');
+  const media_sort_label = document.createElement('label');
   media_sort_label.classList.add('media_sort_label');
   media_sort_label.textContent = 'Trier par';
 
-  const sort_dropdown = document.createElement('div');
+  const sort_dropdown = document.createElement('select');
   sort_dropdown.classList.add('sort_dropdown');
 
-  const sort_dropdown_btn = document.createElement('button');
-  sort_dropdown_btn.classList.add('sort_dropdown_btn');
-  sort_dropdown_btn.textContent = 'Popularité';
-
-  const sort_dropdown_btn_arrow = document.createElement('span');
-  sort_dropdown_btn_arrow.classList.add('fas');
-  sort_dropdown_btn_arrow.classList.add('fa-chevron-down');
-  sort_dropdown_btn_arrow.classList.add('sort_dropdown_btn_arrow');
- 
-  
-  const sort_dropdown_list = document.createElement('ul');
-  sort_dropdown_list.classList.add('sort_dropdown_list');
-  sort_dropdown_list.setAttribute('role','listbox');
-
-
-
-  const sort_dropdown_list_item1 = document.createElement('li');
-  sort_dropdown_list_item1.setAttribute('id', 'sort-item-1');
+  const sort_dropdown_list_item1 = document.createElement('option');
+  sort_dropdown_list_item1.setAttribute('value', 'popularity');
+  sort_dropdown_list_item1.setAttribute('selected', 'selected');
   sort_dropdown_list_item1.textContent = 'Popularité';
   sort_dropdown_list_item1.setAttribute('role','option');
 
-
-  const sort_dropdown_list_arrow = document.createElement('span');
-  sort_dropdown_list_arrow.classList.add('fas');
-  sort_dropdown_list_arrow.classList.add('fa-chevron-up');
-
-  sort_dropdown_list_item1.appendChild(sort_dropdown_list_arrow);
-
-  const sort_dropdown_list_item2 = document.createElement('li');
-  sort_dropdown_list_item2.setAttribute('id', 'sort-item-2');
+  const sort_dropdown_list_item2 = document.createElement('option');
+  sort_dropdown_list_item2.setAttribute('value', 'date');
   sort_dropdown_list_item2.textContent = 'Date';
   sort_dropdown_list_item2.setAttribute('role','option');
 
-
-  const sort_dropdown_list_item3 = document.createElement('li');
-  sort_dropdown_list_item3.setAttribute('id', 'sort-item-3');
+  const sort_dropdown_list_item3 = document.createElement('option');
+  sort_dropdown_list_item3.setAttribute('value', 'title');
   sort_dropdown_list_item3.textContent = 'Titre';
   sort_dropdown_list_item3.setAttribute('role','option');
 
-
   media_sort.appendChild(media_sort_label);
-  sort_dropdown_btn.appendChild(sort_dropdown_btn_arrow);
-  sort_dropdown.appendChild(sort_dropdown_btn);
 
-  sort_dropdown_list.appendChild(sort_dropdown_list_item1);
-  sort_dropdown_list.appendChild(sort_dropdown_list_item2);
-  sort_dropdown_list.appendChild(sort_dropdown_list_item3);
-  sort_dropdown.appendChild(sort_dropdown_list);
+  sort_dropdown.appendChild(sort_dropdown_list_item1);
+  sort_dropdown.appendChild(sort_dropdown_list_item2);
+  sort_dropdown.appendChild(sort_dropdown_list_item3);
 
   media_sort.appendChild(sort_dropdown);
 
@@ -204,9 +175,6 @@ async function buildMediaSection() {
       }
     })
   });
-  
-    //////
-
 
   // ajouter des évênements pour affichier et masquer le lightbox(la vue rapprochée de l'image)
   let media_items = document.querySelectorAll('.media_item');
@@ -249,16 +217,9 @@ async function buildMediaSection() {
   });
 
   //ajouter les évenements
-  sort_dropdown_btn.addEventListener('click', () => {
-    //afficher la liste
-    sort_dropdown_list.style.display = "block";
-  });
-
-  sort_dropdown_list.addEventListener('click', (event) => {
-    switch(event.target.getAttribute('id')) {
-      case 'sort-item-1':
-        sort_dropdown_btn.textContent = "Popularité";
-        
+  sort_dropdown.addEventListener('change', (event) => {
+    switch(event.target.value) {
+      case 'popularity':        
         media.sort((a, b) => {
           if(a.likes > b.likes) { return -1; }
           if(a.likes < b.likes) { return 1; }
@@ -266,8 +227,8 @@ async function buildMediaSection() {
         });
         break;
 
-      case 'sort-item-2':
-        sort_dropdown_btn.textContent = "Date";
+      case 'date':
+      
         media.sort((a, b) => {
           if(a.date > b.date) { return -1; }
           if(a.date < b.date) { return 1; }
@@ -275,8 +236,8 @@ async function buildMediaSection() {
         });
         break;
 
-      case 'sort-item-3':
-        sort_dropdown_btn.textContent = "Titre";
+      case 'title':
+   
         media.sort((a, b) => {
           if(a.title > b.title) { return -1; }
           if(a.title < b.title) { return 1; }
@@ -284,8 +245,6 @@ async function buildMediaSection() {
         });
         break;
     }
-    //masquer la liste
-    sort_dropdown_list.style.display = "none";
 
     // regénération de la grid des média selon le type du tri
     media_grid.innerHTML = '';
