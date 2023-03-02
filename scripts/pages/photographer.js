@@ -1,5 +1,5 @@
-//import { photographerFactory } from "../factories/photographer.js";
-// import { mediaFactory } from "../factories/medias.js";
+import { photographerFactory } from "../factories/photographer.js";
+import { mediaFactory } from "../factories/medias.js";
 
 
 // récupérer l'id du photographe
@@ -94,10 +94,12 @@ async function buildMediaSection() {
   media_sort.classList.add('media_sort');
 
   const media_sort_label = document.createElement('label');
+  media_sort_label.setAttribute('for','sort_dropdown');
   media_sort_label.classList.add('media_sort_label');
   media_sort_label.textContent = 'Trier par';
 
   const sort_dropdown = document.createElement('select');
+  sort_dropdown.setAttribute('id','sort_dropdown');
   sort_dropdown.classList.add('sort_dropdown');
 
   const sort_dropdown_list_item1 = document.createElement('option');
@@ -384,11 +386,12 @@ function buildLightbox(){
   const prev = document.createElement('div');
   prev.classList.add('prev');
 
-  const prev_icon = document.createElement('i');
+  const prev_icon = document.createElement('em');
   prev_icon.classList.add('fas');
   prev_icon.classList.add('fa-chevron-left');
   prev_icon.setAttribute('title', 'Image précédente');
   prev_icon.setAttribute('id', 'prev_icon');
+  prev_icon.setAttribute('role','link');
 
   const media_container = document.createElement('div');
   media_container.classList.add('media_container');
@@ -400,12 +403,14 @@ function buildLightbox(){
   close_btn_icon.classList.add('fas');
   close_btn_icon.classList.add('fa-times');
   close_btn_icon.classList.add('close_btn_icon');
+  close_btn_icon.setAttribute('role','bouton');
 
-  const next_icon = document.createElement('i');
+  const next_icon = document.createElement('em');
   next_icon.classList.add('fas');
   next_icon.classList.add('fa-chevron-right');
   next_icon.setAttribute('title', 'Image suivante');
   next_icon.setAttribute('id', 'next_icon');
+  next_icon.setAttribute('role','link');
 
 
   prev.appendChild(prev_icon);

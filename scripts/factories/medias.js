@@ -12,6 +12,7 @@ function mediaFactory(data) {
         if(image) {
           const media_item_img = document.createElement('img');
           media_item_img.setAttribute('src', 'assets/media/' + image);
+          media_item_img.setAttribute('alt', title);
           media_item_img.setAttribute('tabindex', 0);
       
           media_item.appendChild(media_item_img);
@@ -20,6 +21,7 @@ function mediaFactory(data) {
       if(video) {
           const media_item_video = document.createElement('video');
           media_item_video.setAttribute('src', 'assets/media/' + video);
+          media_item_video.setAttribute('alt', title);
           media_item_video.setAttribute('tabindex', 0);
           media_item.appendChild(media_item_video);
       }
