@@ -313,7 +313,7 @@ async function buildMediaSection() {
 
     media_container.innerHTML = '';
     media_container.appendChild(theMedia);
-    theTitle = media_items[currentIndex].querySelector('h2').cloneNode(true);
+    theTitle = media_items[currentIndex].querySelector('.media_item_title').cloneNode(true);
     media_container.appendChild(theTitle);
   };
 
@@ -341,7 +341,7 @@ async function buildMediaSection() {
 
     media_container.innerHTML = '';
     media_container.appendChild(theMedia);
-    theTitle = media_items[currentIndex].querySelector('h2').cloneNode(true);
+    theTitle = media_items[currentIndex].querySelector('.media_item_title').cloneNode(true);
     media_container.appendChild(theTitle);
   };
 

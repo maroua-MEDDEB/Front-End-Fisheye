@@ -28,6 +28,7 @@ function mediaFactory(data) {
       media_item_infos.classList.add('media_item_infos');
     
       const p = document.createElement('p');
+      p.classList.add('media_item_title');
       p.textContent = title;
     
       const div1 = document.createElement('div');
