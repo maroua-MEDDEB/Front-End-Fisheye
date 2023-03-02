@@ -148,10 +148,9 @@ async function buildMediaSection() {
   media_section.appendChild(media_grid);
   photographerMedia.appendChild(media_section);
 
-  //////
-  const like_icon = document.querySelectorAll('.like_icon');
-
-  like_icon.forEach((element) => {
+  // ajouter les évenements aux boutons coeurs (likes)
+  let like_icon = document.querySelectorAll('.like_icon');
+  const like_function = (element) => {
     let is_clicked = false;
     element.addEventListener('click', () => {
       if(is_clicked === false) {
@@ -174,6 +173,10 @@ async function buildMediaSection() {
         is_clicked = true;
       }
     })
+  };
+
+  like_icon.forEach((element) => {
+    like_function(element);
   });
 
   // ajouter des évênements pour affichier et masquer le lightbox(la vue rapprochée de l'image)
@@ -253,6 +256,14 @@ async function buildMediaSection() {
       const mediaModel = mediaFactory(element);
       const mediaItem = mediaModel.createMediaItem();
       media_grid.appendChild(mediaItem);
+    });
+
+    //rajouter les évenements aux boutons like après le tri
+    //explication: le tri supprime la grid du média et la regénère une autre fois
+    like_icon = document.querySelectorAll('.like_icon');
+
+    like_icon.forEach((element) => {
+      like_function(element);
     });
 
     // redéfinition de la variable media_items lors de tri des éléments

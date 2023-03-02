@@ -134,6 +134,7 @@
 
 .media_item_infos .fa-heart {
     margin-left: 5px;
+    cursor: pointer;
 }
 
 /* lightbox*/
