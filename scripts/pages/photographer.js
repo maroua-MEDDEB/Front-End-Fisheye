@@ -8,12 +8,12 @@ let id = parseInt(params.get('id')); // le nombre id
 
 // récupérer les infos du bon photographer
 async function getPhotographer() {
-    const response = await fetch("data/photographers.json"); // envoyer requête pour récupérer le fichier json
-    const data = await response.json(); // je convertis la réponse http en object json
-    const photographers = data.photographers;// récupérer uniquement la clé photographers
-    const photographer = photographers.find((element) => {return element.id === id});  
-    
-    return photographer;
+  const response = await fetch("data/photographers.json"); // envoyer requête pour récupérer le fichier json
+  const data = await response.json(); // je convertis la réponse http en object json
+  const photographers = data.photographers;// récupérer uniquement la clé photographers
+  const photographer = photographers.find((element) => {return element.id === id});  
+  
+  return photographer;
 }
 
 // récupérer les médias de notre photographe
@@ -54,8 +54,7 @@ async  function displayPhotographerInfo() {
   const media = await getMedia();
   let total_likes = 0;
 
-  media.forEach((element) => {
-    
+  media.forEach((element) => {   
     total_likes += element.likes; //calculer la somme totales des likes
   });
 

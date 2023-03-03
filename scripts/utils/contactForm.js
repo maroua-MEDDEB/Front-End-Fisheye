@@ -1,13 +1,13 @@
 //Afficher le formulaire de contact
 function displayModal() {
-    const modal = document.getElementById("contact_modal");
-	  modal.style.display = "block";
+  const modal = document.getElementById("contact_modal");
+  modal.style.display = "block";
 }
 
 //Masquer la formulaire de contact
 function closeModal() {
-    const modal = document.getElementById("contact_modal");
-    modal.style.display = "none";
+  const modal = document.getElementById("contact_modal");
+  modal.style.display = "none";
 }
 
 //Ajouter un évenement de type click au bouton de contact pour afficher le formaulaire de contact
