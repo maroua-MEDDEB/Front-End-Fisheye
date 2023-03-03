@@ -1,4 +1,4 @@
-function mediaFactory(data) {
+export function mediaFactory(data) {
     const { title, image, video, likes} = data;
   
     function createMediaItem() {
