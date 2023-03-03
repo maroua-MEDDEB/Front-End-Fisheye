@@ -215,9 +215,16 @@
     justify-content: space-between;
     width: 100%;
 }
-
-.modal header img {
+.modal  header button{
+background-color: transparent;
+border: none;
+}
+.modal  header span {
     cursor: pointer;
+    font-size: 4.5rem;
+    font-weight: 500;
+    color: white;
+ 
 }
 
 .modal header h2 {

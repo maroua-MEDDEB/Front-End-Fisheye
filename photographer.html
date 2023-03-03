@@ -18,7 +18,7 @@
 
     <main id="main">
       <div class="photograph-header">
-        <button class="contact_button" id="contact_btn" title="Contactez-moi" type="button">Contactez-moi</button>
+        <button class="contact_button" id="contact_btn" title="Contactez-moi" >Contactez-moi</button>
       </div>
 
     </main>
@@ -27,13 +27,17 @@
 			<div class="modal">
 				<header>
           <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" class="close_modal"/>
+          <!-- <img src="assets/icons/close.svg" class="close_modal" alt="fermer le formulaire de contact" title="Close Contact form" /> -->
+        
+            <button type="button" class="close_button_modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+            </button>
         </header>
 
 				<form action="" role="form" id="contact_form" method="post">
 					<div>
 						<label for="prenom">Prénom</label>
-						<input id="prenom" type="text" name="prenom" tabindex="1" placeholder="Entrer votre prénom"/>
+						<input id="prenom" type="text" name="prenom" tabindex="1" />
 					</div>
 
           <div>
@@ -58,7 +62,7 @@
     <script src="scripts/factories/photographer.js" type="module"></script>
     <script src="scripts/factories/medias.js" type="module"></script>
 
-    <script src="scripts/pages/photographer.js"></script>
+    <script src="scripts/pages/photographer.js" type="module"></script>
     <script src="scripts/utils/contactForm.js"></script>
   </body>
 </html>

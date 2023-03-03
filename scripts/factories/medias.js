@@ -2,28 +2,26 @@ export function mediaFactory(data) {
     const { title, image, video, likes} = data;
   
     function createMediaItem() {
-        const media_item = document.createElement('div');
-        media_item.classList.add('media_item');
+      const media_item = document.createElement('div');
+      media_item.classList.add('media_item');
+  
+      media_item.setAttribute('title', title);
+      //si l'élément est une image donc on crée un élément html img
+      if(image) {
+        const media_item_img = document.createElement('img');
+        media_item_img.setAttribute('src', 'assets/media/' + image);
+        media_item_img.setAttribute('alt', title);
+        media_item_img.setAttribute('tabindex', 0);
     
-        media_item.setAttribute('title', title);
-        // media_item.setAttribute('tabindex', 0);
-        //si l'élément est une image donc on crée un élément html img
-
-        if(image) {
-          const media_item_img = document.createElement('img');
-          media_item_img.setAttribute('src', 'assets/media/' + image);
-          media_item_img.setAttribute('alt', title);
-          media_item_img.setAttribute('tabindex', 0);
-      
-          media_item.appendChild(media_item_img);
+        media_item.appendChild(media_item_img);
       }
-        //si l'élément est un vidéo donc on crée un élément html vidéos
+      //si l'élément est un vidéo donc on crée un élément html vidéos
       if(video) {
-          const media_item_video = document.createElement('video');
-          media_item_video.setAttribute('src', 'assets/media/' + video);
-          media_item_video.setAttribute('alt', title);
-          media_item_video.setAttribute('tabindex', 0);
-          media_item.appendChild(media_item_video);
+        const media_item_video = document.createElement('video');
+        media_item_video.setAttribute('src', 'assets/media/' + video);
+        media_item_video.setAttribute('alt', title);
+        media_item_video.setAttribute('tabindex', 0);
+        media_item.appendChild(media_item_video);
       }
     
       const media_item_infos = document.createElement('div');
@@ -58,5 +56,5 @@ export function mediaFactory(data) {
       return media_item;
     }
   
-    return { createMediaItem };
-  }
+  return { createMediaItem };
+}

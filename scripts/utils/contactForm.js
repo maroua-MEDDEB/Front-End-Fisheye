@@ -17,8 +17,8 @@ contact_btn.addEventListener('click', () => {
 })
 
 //fermer le modal
-const close_modal = document.querySelector(".close_modal");
-close_modal.addEventListener('click', () => {
+const close_button_modal = document.querySelector(".close_button_modal");
+close_button_modal.addEventListener('click', () => {
   closeModal();
 });
 
@@ -38,3 +38,10 @@ contact_form.addEventListener('submit', (event) => {
   
   //submit_btn.setAttribute('disabled', true); // désactiver le bouton submit après l'envoie de données du formulaire (on a le droit d'envoyer  les données  q'une seule fois)
 });
+
+// fermer le formulaire de contact avec le bouton echap du clavier
+  document.addEventListener('keydown', (event) => {
+    if(event.key === 'Escape') {
+      closeModal();
+    }
+  });
