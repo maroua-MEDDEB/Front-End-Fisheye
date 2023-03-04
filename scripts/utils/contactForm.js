@@ -24,7 +24,7 @@ close_contact_form.addEventListener('click', () => {
 
 //ajouter un évênement d'envoie (submit) de formulaire de contact
 const contact_form = document.querySelector('form');
-const submit_btn = document.querySelector('#submit_btn');
+// const submit_btn = document.querySelector('#submit_btn');
 
 contact_form.addEventListener('submit', (event) => {
   event.preventDefault(); // supprimer les actions du bouton de type submit qui sont par défaut
