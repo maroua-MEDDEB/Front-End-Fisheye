@@ -17,8 +17,8 @@ contact_btn.addEventListener('click', () => {
 })
 
 //fermer le modal
-const close_button_modal = document.querySelector(".close_button_modal");
-close_button_modal.addEventListener('click', () => {
+const close_contact_form = document.querySelector(".close_contact_form");
+close_contact_form.addEventListener('click', () => {
   closeModal();
 });
 
@@ -26,7 +26,7 @@ close_button_modal.addEventListener('click', () => {
 const contact_form = document.querySelector('#contact_form');
 const submit_btn = document.querySelector('#submit_btn');
 
-contact_form.addEventListener('submit', (event) => {
+submit_btn.addEventListener('submit', (event) => {
   event.preventDefault(); // supprimer les actions du bouton de type submit qui sont par défaut
 
   const prenom  = contact_form.elements['prenom'].value;
@@ -35,7 +35,8 @@ contact_form.addEventListener('submit', (event) => {
   const message = contact_form.elements['message'].value;
 
   console.log(prenom, nom, email, message);
-  
+  console.log('cc');
+
   //submit_btn.setAttribute('disabled', true); // désactiver le bouton submit après l'envoie de données du formulaire (on a le droit d'envoyer  les données  q'une seule fois)
 });
 
