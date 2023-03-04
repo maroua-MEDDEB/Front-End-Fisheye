@@ -23,10 +23,10 @@ close_contact_form.addEventListener('click', () => {
 });
 
 //ajouter un évênement d'envoie (submit) de formulaire de contact
-const contact_form = document.querySelector('#contact_form');
+const contact_form = document.querySelector('form');
 const submit_btn = document.querySelector('#submit_btn');
 
-submit_btn.addEventListener('submit', (event) => {
+contact_form.addEventListener('submit', (event) => {
   event.preventDefault(); // supprimer les actions du bouton de type submit qui sont par défaut
 
   const prenom  = contact_form.elements['prenom'].value;
@@ -35,7 +35,6 @@ submit_btn.addEventListener('submit', (event) => {
   const message = contact_form.elements['message'].value;
 
   console.log(prenom, nom, email, message);
-  console.log('cc');
 
   //submit_btn.setAttribute('disabled', true); // désactiver le bouton submit après l'envoie de données du formulaire (on a le droit d'envoyer  les données  q'une seule fois)
 });
