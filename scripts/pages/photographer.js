@@ -32,18 +32,18 @@ async function getMedia() {
 let ph_total_likes_number;
 
 async  function displayPhotographerInfo() {
-  const photographer = await getPhotographer(); 
+  const photographer = await getPhotographer(); // récupérer les info du photographe
   const photographerHeader = document.querySelector('.photograph-header');
   const photographerModel = photographerFactory(photographer);
-  const photographerInfo = photographerModel.photographerInfo();
+  const photographerInfo = photographerModel.photographerInfo(); 
 
-  photographerHeader.prepend(photographerInfo);
+  photographerHeader.prepend(photographerInfo); // afficher la div photographerHeader avant le bouton de contact avec prepend
 
   const ph_photo = document.createElement('img');
   ph_photo.setAttribute('src', photographerModel.picture);
   ph_photo.setAttribute('alt', photographerModel.name);
 
-  photographerHeader.appendChild(ph_photo);
+  photographerHeader.appendChild(ph_photo); 
 
   //créer une div qui contient le nombre totale des likes
   const ph_total_likes = document.createElement('div');
@@ -51,7 +51,7 @@ async  function displayPhotographerInfo() {
   ph_total_likes_number = document.createElement('span');
   ph_total_likes.appendChild(ph_total_likes_number);
   
-  const media = await getMedia();
+  const media = await getMedia(); //récupérer les les données de média
   let total_likes = 0;
 
   media.forEach((element) => {   
@@ -141,8 +141,8 @@ async function buildMediaSection() {
   });
 
   media.forEach((element) => {
-    const mediaModel = mediaFactory(element);
-    const mediaItem = mediaModel.createMediaItem();
+    const mediaModel = mediaFactory(element); // appel à un modèle mediaFactory
+    const mediaItem = mediaModel.createMediaItem(); // la structure html se trouve dans createMediaItem()
     media_grid.appendChild(mediaItem);
   });
 
@@ -180,6 +180,7 @@ async function buildMediaSection() {
     like_function(element);
   });
 
+
   // ajouter des évênements pour affichier et masquer le lightbox(la vue rapprochée de l'image)
   let media_items = document.querySelectorAll('.media_item');
   const lightbox = document.querySelector('.lightbox');
@@ -191,14 +192,14 @@ async function buildMediaSection() {
   const showLightbox = (element) => {
     media_container.innerHTML='';
     if(element.querySelector('img')) {
-      theMedia = element.querySelector('img').cloneNode(true);
+      theMedia = element.querySelector('img').cloneNode(true); 
     }
     else {
       theMedia = element.querySelector('video').cloneNode(true);
       theMedia.setAttribute('controls', true);
     }
 
-    lightbox.style.display = 'block';
+    lightbox.style.display = 'block'; //afficher le lightbox
     media_container.appendChild(theMedia);
     theTitle = element.querySelector('p').cloneNode(true);
     media_container.appendChild(theTitle);
@@ -220,7 +221,7 @@ async function buildMediaSection() {
     });
   });
 
-  //ajouter les évenements
+  //ajouter les évenements (tri par popularité, par date et par title)
   sort_dropdown.addEventListener('change', (event) => {
     switch(event.target.value) {
       case 'popularity':        
@@ -258,6 +259,7 @@ async function buildMediaSection() {
       const mediaItem = mediaModel.createMediaItem();
       media_grid.appendChild(mediaItem);
     });
+
 
     //rajouter les évenements aux boutons like après le tri
     //explication: le tri supprime la grid du média et la regénère une autre fois
