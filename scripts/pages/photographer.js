@@ -363,14 +363,16 @@ async function buildMediaSection() {
       next_function();
       return;
     }
-
+    
     if(event.key === 'Escape') {
-      if(theMedia) {
+      if(theMedia && media_container.contains(theMedia)) {
         media_container.removeChild(theMedia);
         lightbox.style.display = 'none';
       }
     }
-  });
+    
+    }
+    );
 }
 
 buildMediaSection();
